@@ -1,0 +1,26 @@
+{
+	"name": "bookclub-client",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"firebase": "^10.13.1",
+		"preact": "^10.22.1",
+		"preact-iso": "^2.6.3"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.9.0",
+		"eslint": "^8.57.0",
+		"eslint-config-preact": "^1.4.0",
+		"typescript": "^5.6.2",
+		"vite": "^5.3.3"
+	},
+	"eslintConfig": {
+		"extends": "preact"
+	}
+}
