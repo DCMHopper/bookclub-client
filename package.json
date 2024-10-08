@@ -9,7 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"firebase": "^10.13.1",
+		"@supabase/supabase-js": "^2.45.4",
 		"preact": "^10.22.1",
 		"preact-iso": "^2.6.3"
 	},
