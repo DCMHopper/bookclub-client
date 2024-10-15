@@ -10,11 +10,14 @@
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.45.4",
+		"jsonwebtoken": "^9.0.2",
+		"jwt-decode": "^4.0.0",
 		"preact": "^10.22.1",
 		"preact-iso": "^2.6.3"
 	},
 	"devDependencies": {
 		"@preact/preset-vite": "^2.9.0",
+		"@types/jsonwebtoken": "^9.0.7",
 		"eslint": "^8.57.0",
 		"eslint-config-preact": "^1.4.0",
 		"typescript": "^5.6.2",
