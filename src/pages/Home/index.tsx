@@ -104,25 +104,34 @@ const Home = () => {
       {nextMeeting && readings[nextMeeting.reading_id] && (
         <div class="callout-box">
           <h2>Next Meeting</h2>
-          <p><strong>Reading:</strong> {readings[nextMeeting.reading_id].title}</p>
-          <p><strong>Section:</strong> {nextMeeting.section}</p>
-          <p><strong>Description:</strong> {readings[nextMeeting.reading_id].reading_desc}</p>
-          <p><strong>Meeting Room:</strong> <a href={nextMeeting.clubs.meeting_room} target="_blank" rel="noopener noreferrer">Join Here</a></p>
-          <p><strong>Scheduled For:</strong> {new Date(nextMeeting.scheduled_for).toLocaleString()}</p>
+          <h3 class="reading-title">{readings[nextMeeting.reading_id].title}</h3>
+          <p class="section-subtitle">{nextMeeting.section}</p>
+          <p class="reading-description">{readings[nextMeeting.reading_id].reading_desc}</p>
+          <p class="meeting-time">
+            <strong>Scheduled For:</strong> {new Date(nextMeeting.scheduled_for).toLocaleString()}
+          </p>
+          <a 
+            href={nextMeeting.clubs.meeting_room} 
+            class="meeting-room-button" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Join Meeting Room
+          </a>
         </div>
       )}
 
       <div class="meetings-list">
         <h2>Upcoming Meetings</h2>
         {meetings.length > 0 ? (
-          <ul>
+          <ul class="meetings-list">
             {meetings.map((meeting) => (
               readings[meeting.reading_id] ? (
-                <li key={meeting.id}>
-                  <p><strong>Reading:</strong> {readings[meeting.reading_id].title}</p>
-                  <p><strong>Section:</strong> {meeting.section}</p>
-                  <p><strong>Scheduled For:</strong> {new Date(meeting.scheduled_for).toLocaleString()}</p>
-                  <p><strong>Meeting Room:</strong> <a href={meeting.clubs.meeting_room} target="_blank" rel="noopener noreferrer">Join Here</a></p>
+                <li class="meeting-item" key={meeting.id}>
+                  <h3 class="reading-title">{readings[meeting.reading_id].title}</h3>
+                  <p class="section-subtitle">{meeting.section}</p>
+                  <p class="reading-description">{readings[meeting.reading_id].reading_desc}</p>
+                  <p class="meeting-time"><strong>Scheduled For:</strong> {new Date(meeting.scheduled_for).toLocaleString()}</p>
                 </li>
               ) : null
             ))}

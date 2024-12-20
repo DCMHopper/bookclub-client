@@ -1,9 +1,26 @@
+:root {
+	--color-primary: #673ab8;
+	--color-primary-hover: #5a31a5;
+	--color-primary-shadow: #673ab888;
+	--color-primary-glow: #673ab8aa;
+	--color-text: #222;
+	--color-text-muted: #999;
+	--color-text-subtitle: #aaa;
+	--color-border: #626262;
+	--color-background: #f1f1f1;
+	--color-background-dark: #232323;
+	--color-background-darker: #121212;
+	--color-white: #fff;
+	--color-black: #000;
+	--color-border-light: #bbb;
+}
+
 img {
 	margin-bottom: 1.5rem;
 }
 
 img:hover {
-	filter: drop-shadow(0 0 2em #673ab8aa);
+	filter: drop-shadow(0 0 2em var(--color-primary-glow));
 }
 
 .home section {
@@ -18,14 +35,14 @@ img:hover {
 	border-radius: 0.5rem;
 	text-align: left;
 	text-decoration: none;
-	color: #222;
-	background-color: #f1f1f1;
+	color: var(--color-text);
+	background-color: var(--color-background);
 	border: 1px solid transparent;
 }
 
 .resource:hover {
-	border: 1px solid #000;
-	box-shadow: 0 25px 50px -12px #673ab888;
+	border: 1px solid var(--color-black);
+	box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
 }
 
 @media (max-width: 639px) {
@@ -38,10 +55,69 @@ img:hover {
 
 @media (prefers-color-scheme: dark) {
 	.resource {
-		color: #ccc;
-		background-color: #161616;
+		color: var(--color-border-light);
+		background-color: var(--color-background-darker);
 	}
 	.resource:hover {
-		border: 1px solid #bbb;
+		border: 1px solid var(--color-border-light);
 	}
+}
+
+.meetings-list {
+	padding-left: 0;
+}
+
+.meeting-item {
+	list-style-type: none;
+	border: 2px solid var(--color-border);
+	background-color: var(--color-background-dark);
+	padding: 1rem;
+}
+
+.reading-title {
+	margin-bottom: 0.25rem;
+}
+
+.section-subtitle {
+	color: var(--color-text-subtitle);
+	font-style: italic;
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+.reading-description {
+	margin-bottom: 1rem;
+}
+
+.meeting-time {
+	color: var(--color-text-muted);
+	font-size: 0.9em;
+}
+
+.callout-box {
+	list-style-type: none;
+	border: 2px solid var(--color-border);
+	background-color: var(--color-background-dark);
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.callout-box h2 {
+	margin-top: 0;
+	margin-bottom: 1.5rem;
+}
+
+.meeting-room-button {
+	display: inline-block;
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	padding: 0.75rem 1.5rem;
+	text-decoration: none;
+	border-radius: 4px;
+	margin-top: 0.5rem;
+	transition: background-color 0.2s;
+}
+
+.meeting-room-button:hover {
+	background-color: var(--color-primary-hover);
 }
