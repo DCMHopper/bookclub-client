@@ -89,7 +89,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/
 
 # Gatsby files
 .cache/
@@ -128,3 +128,15 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Vite local cache
+.vite/
+dist-ssr/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
