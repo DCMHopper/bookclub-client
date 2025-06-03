@@ -1,4 +1,6 @@
-# `create-preact`
+# bookclub-client
+
+A simple frontend application for managing a book club using Preact and Vite.
 
 <h2 align="center">
   <img height="256" width="256" src="./src/assets/preact.svg">
