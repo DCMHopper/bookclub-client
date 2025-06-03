@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState, useRef } from "preact/hooks";
 import supabase from "../../supabaseClient";
 import { JwtPayload } from "jsonwebtoken";
 import { jwtDecode } from "jwt-decode";
@@ -105,40 +105,50 @@ const Home = () => {
     return error;
   };
 
-  const calendar = new Calendar("#calendar", {
-    defaultView: "month",
-    usageStatistics: "false",
-    calendars: [
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    if (!calendarRef.current) return;
+
+    const calendar = new Calendar(calendarRef.current, {
+      defaultView: "month",
+      usageStatistics: false,
+      calendars: [
+        {
+          id: "1",
+          name: "Events",
+          color: "#ffffff",
+          bgColor: "#00a9ff",
+          dragBgColor: "#00a9ff",
+          borderColor: "#00a9ff",
+        },
+      ],
+    });
+
+    // sample events
+    calendar.createEvents([
       {
         id: "1",
-        name: "Events",
-        color: "#ffffff",
-        bgColor: "#00a9ff",
-        dragBgColor: "#00a9ff",
-        borderColor: "#00a9ff",
+        calendarId: "1",
+        title: "Event 1",
+        category: "time",
+        start: "2024-10-25T10:00:00",
+        end: "2024-10-25T12:00:00",
       },
-    ],
-  });
+      {
+        id: "2",
+        calendarId: "1",
+        title: "Event 2",
+        category: "time",
+        start: "2024-10-26T13:00:00",
+        end: "2024-10-26T14:00:00",
+      },
+    ]);
 
-  // sample events
-  calendar.createEvents([
-    {
-      id: "1",
-      calendarId: "1",
-      title: "Event 1",
-      category: "time",
-      start: "2024-10-25T10:00:00",
-      end: "2024-10-25T12:00:00",
-    },
-    {
-      id: "2",
-      calendarId: "1",
-      title: "Event 2",
-      category: "time",
-      start: "2024-10-26T13:00:00",
-      end: "2024-10-26T14:00:00",
-    },
-  ]);
+    return () => {
+      calendar.destroy();
+    };
+  }, []);
 
   return (
     <div class="dashboard">
@@ -173,7 +183,7 @@ const Home = () => {
           </p>
         </div>
       )}
-      <div id="calendar" style="height: 600px; width: 800px;"></div>
+      <div ref={calendarRef} style="height: 600px; width: 800px;"></div>
       <div class="meetings-list">
         <h2>Upcoming Meetings</h2>
         {meetings.length > 0 ? (
