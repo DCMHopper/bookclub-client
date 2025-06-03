@@ -107,7 +107,7 @@ const Home = () => {
 
   const calendar = new Calendar("#calendar", {
     defaultView: "month",
-    usageStatistics: "false",
+    usageStatistics: false,
     calendars: [
       {
         id: "1",
