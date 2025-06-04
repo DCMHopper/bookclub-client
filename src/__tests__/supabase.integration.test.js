@@ -1,5 +1,8 @@
 import { describe, it, expect, beforeAll } from "vitest";
-import supabase from "../supabaseClient"; // Adjust path if your supabaseClient is elsewhere
+import { envMissing } from "./setup";
+
+const describeFn = envMissing || missingCreds ? describe.skip : describe;
+let supabase;
 
 // Ensure you have a .env file at the root with VITE_TEST_EMAIL and VITE_TEST_PASS for these tests
 // or configure these credentials securely for your test environment.
@@ -12,18 +15,20 @@ const TEST_USER_EMAIL =
 const TEST_USER_PASSWORD =
   process.env.VITE_TEST_PASS || import.meta.env.VITE_TEST_PASS;
 
-if (!TEST_USER_EMAIL || !TEST_USER_PASSWORD) {
-  throw new Error(
-    "Test credentials not found in environment variables. Please ensure VITE_TEST_EMAIL and VITE_TEST_PASS are set."
-  );
-}
+const missingCreds = !TEST_USER_EMAIL || !TEST_USER_PASSWORD;
 
 let testUserId = null;
 let testClubId = null; // This will be populated from the user's JWT or a known club
 let testReadingId = null; // This will be populated from a fetched meeting
 
-describe("Supabase Integration Tests", () => {
+describeFn("Supabase Integration Tests", () => {
   beforeAll(async () => {
+    if (envMissing || missingCreds) {
+      return;
+    }
+    const module = await import("../supabaseClient");
+    supabase = module.default;
+
     try {
       const { data: signInData, error: signInError } =
         await supabase.auth.signInWithPassword({

@@ -20,14 +20,12 @@ activities. It uses Preact for the UI and Supabase as the backend service.
 
 ## Environment Variables
 
-Create a `.env` file in the project root with your Supabase credentials:
-
-```bash
-VITE_SUPABASE_URL=<your project url>
-VITE_SUPABASE_KEY=<your anon key>
-```
+Copy `.env.example` to `.env` and fill in your credentials. The setup script
+will do this automatically when run for the first time.
 
 ## Getting Started
+
+Run `scripts/setup-dev.sh` to install dependencies and create your `.env` file.
 
 -   `npm run dev` - Starts a dev server at http://localhost:5173/
 
